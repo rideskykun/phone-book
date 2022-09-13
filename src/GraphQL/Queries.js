@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql } from '@apollo/client'
 
 export const GET_CONTACT_LIST = gql`
     query GetContactList (
@@ -24,5 +24,4 @@ export const GET_CONTACT_LIST = gql`
             }
         }
     }
-
 `

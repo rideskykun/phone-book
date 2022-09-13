@@ -38,7 +38,13 @@ function ContactList(props) {
 
     return (
         <div>
-            Contact List
+
+            {/*Favourites*/}
+            <h3>Favourites</h3>
+
+
+            {/*Contact List*/}
+            <h3>Contact List</h3>
             <Card>
                 <table style={{width:'100%'}}>
                     <thead>
@@ -53,7 +59,13 @@ function ContactList(props) {
                         contacts.map(c => (
                             <tr>
                                 <td>{`${c.first_name} ${c.last_name}`}</td>
-                                <td>{c.phones[0].number}</td>
+                                <td>
+                                    {c.phones.length>0? c.phones[0].number: '-'}
+                                    <br/>
+                                    <h6 style={{margin:'0', color:'darkcyan'}}>
+                                        {c.phones.length>1? `and ${c.phones.length-1} more` : null}
+                                    </h6>
+                                </td>
                                 <button>Edit</button>
                             </tr>
                         ))
@@ -63,6 +75,9 @@ function ContactList(props) {
                     </tbody>
                 </table>
             </Card>
+
+            
+
         </div>
     );
 }

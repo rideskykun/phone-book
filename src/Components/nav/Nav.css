@@ -1,0 +1,18 @@
+.Nav{
+    position: fixed;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.Nav button{
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    margin: 0 0.5rem 0 0.51rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.Nav button:active{
+    box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 0.1), inset 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}

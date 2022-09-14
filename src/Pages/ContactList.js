@@ -1,26 +1,32 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Card} from "../Components/card";
 import {GET_CONTACT_LIST} from "../GraphQL/Queries";
-import {useQuery} from "@apollo/client";
+import {useLazyQuery, useQuery} from "@apollo/client";
 import ContactContext from "../Contexts/ContactContext";
+import {Link, useLocation} from "react-router-dom";
 
 function ContactList(props) {
     //Constants & States
     const { favourites, addFavourite, removeFavourite } = useContext(ContactContext)
-    const {error, loading, data} = useQuery(GET_CONTACT_LIST, {
-        variables:{
-            limit: 10,
-            offset: 0,
-            where:  {
-                id: {
-                    _nin: favourites.map(f => f.id)
+    let query = new URLSearchParams(useLocation().search)
+    const [page,setPage] = useState(Number(query.get('page')!==null?query.get('page'):1))
+    const [contacts, setContacts] = useState([])
+    const [fetchContacts, {error, loading, data}] = useLazyQuery(GET_CONTACT_LIST)
+
+    useEffect(()=>{
+        setPage(Number(query.get('page')!==null?query.get('page'):1))
+        fetchContacts({
+            variables:{
+                limit: 10,
+                offset: 10 * (page-1),
+                where: {
+                    id: {
+                        _nin: favourites.map(f => f.id)
+                    }
                 }
             }
-        }
-    })
-    const [contacts, setContacts] = useState([])
-
-
+        }).then(r=>null)
+    },[query])
     useEffect(()=>{
         if(data) setContacts(data.contact)
     }, [data])
@@ -40,7 +46,6 @@ function ContactList(props) {
 
     return (
         <div>
-
             {/*Favourites*/}
             <h3>Favourites</h3>
             <div style={{display:'flex', justifyContent:'flex-start'}}>
@@ -81,7 +86,7 @@ function ContactList(props) {
                             <th colSpan={2}>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{overflow:'auto'}}>
                     {contacts.length>0?
                         contacts.map(c => (
                             <tr>
@@ -105,10 +110,34 @@ function ContactList(props) {
                             </tr>
                         ))
                         :
-                        null
+                        <tr>
+                            <td colSpan={3} style={{textAlign:'center'}}>
+                                No Data
+                            </td>
+                        </tr>
                     }
                     </tbody>
                 </table>
+                <div style={{display:'flex', justifyContent:'space-between', padding:'0.5rem'}}>
+                    Page {page}
+                    <div>
+                        {
+                            page>1?
+                                <Link to={'/?page='+ (page-1)}>
+                                    <button>Prev</button>
+                                </Link>
+                                :null
+                        }
+                        {
+                            contacts.length<10?
+                                null
+                                :
+                                <Link to={'/?page='+ (page+1)}>
+                                    <button>Next</button>
+                                </Link>
+                        }
+                    </div>
+                </div>
             </Card>
 
             

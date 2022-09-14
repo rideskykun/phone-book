@@ -1,23 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Card} from "../Components/card";
 import {GET_CONTACT_LIST} from "../GraphQL/Queries";
 import {useQuery} from "@apollo/client";
+import ContactContext from "../Contexts/ContactContext";
 
 function ContactList(props) {
     //Constants & States
+    const { favourites, addFavourite, removeFavourite } = useContext(ContactContext)
     const {error, loading, data} = useQuery(GET_CONTACT_LIST, {
         variables:{
             limit: 10,
             offset: 0,
             where:  {
-                first_name: {
-                    _nin: ["Xendalgia"]
+                id: {
+                    _nin: favourites.map(f => f.id)
                 }
             }
         }
     })
-
     const [contacts, setContacts] = useState([])
+
 
     useEffect(()=>{
         if(data) setContacts(data.contact)
@@ -41,6 +43,31 @@ function ContactList(props) {
 
             {/*Favourites*/}
             <h3>Favourites</h3>
+            <div style={{display:'flex', justifyContent:'flex-start'}}>
+                {favourites.length>0?
+                    favourites.map(f => (
+                        <div
+                            style={{width:'24%'}}
+                        >
+                            <Card>
+                                <div style={{padding:'0.2rem', margin:'0'}}>
+                                    <h5>{`${f.first_name} ${f.last_name}`}</h5>
+                                    <h5
+                                        style={{whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}
+                                    >
+                                        {f.phones.length>0? f.phones[0].number: '-'}
+                                    </h5>
+                                    <button
+                                        onClick={()=>removeFavourite(f.id)}
+                                    >Remove</button>
+                                </div>
+                            </Card>
+                        </div>
+                    ))
+                    :
+                    <p>No favourites added yet</p>
+                }
+            </div>
 
 
             {/*Contact List*/}
@@ -51,7 +78,7 @@ function ContactList(props) {
                         <tr>
                             <th>Name</th>
                             <th>Number</th>
-                            <th>Action</th>
+                            <th colSpan={2}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,7 +93,15 @@ function ContactList(props) {
                                         {c.phones.length>1? `and ${c.phones.length-1} more` : null}
                                     </h6>
                                 </td>
-                                <button>Edit</button>
+                                <td>
+                                    <button>Edit</button>
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={()=>{addFavourite(c)}}
+                                        disabled={favourites.length>3}
+                                    >&#9733;</button>
+                                </td>
                             </tr>
                         ))
                         :

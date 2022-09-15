@@ -1,9 +1,9 @@
 import React, {FC} from 'react'
 
-const ContactForm:FC = ()=> {
+const ContactForm:FC = () => {
     return(
         <>
-            Contact Form
+            Form Component
         </>
     )
 }

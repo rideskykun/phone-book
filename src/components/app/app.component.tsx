@@ -6,7 +6,7 @@ import {ApolloProvider} from "@apollo/client";
 
 import Header from '../header/header.component'
 import ContactList from "../../pages/contactList/contactList.page";
-import ContactForm from "../../pages/contactForm/contactForm.page";
+import ContactAddEdit from "../../pages/contactForm/contactAddEdit.page";
 import client from "../../common/apolloClient";
 
 import './app.component.css'
@@ -24,8 +24,8 @@ const App: FC = () => {
                     <Routes>
                         <Route path={'/'} element={<Navigate to={'/list/page/1'}/>}/>
                         <Route path={'/list/page/:page'} element={<ContactList/>}/>
-                        <Route path={'/add'} element={<ContactForm/>}/>
-                        <Route path={'/edit/:id'} element={<ContactForm/>}/>
+                        <Route path={'/add'} element={<ContactAddEdit/>}/>
+                        <Route path={'/edit/:id'} element={<ContactAddEdit/>}/>
                     </Routes>
                 </Router>
 

@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="433ab86f-4d21-4610-a602-f91fdc228ed0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/common/apolloClient.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/contacts/useGetContacts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/app.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/app.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contactsGrid/contactsGridItem/contactsGridItem.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contactsGrid/contactsGridItem/contactsGridItem.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contactList/contactList.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contactList/contactList.page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -60,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1663226217850</updated>
       <workItem from="1663226239747" duration="4046000" />
-      <workItem from="1663239881967" duration="4500000" />
+      <workItem from="1663239881967" duration="5976000" />
     </task>
     <servers />
   </component>

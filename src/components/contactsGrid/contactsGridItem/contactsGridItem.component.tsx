@@ -7,6 +7,10 @@ const ContactsGridItem:FC<{contact: Contact}> = ({contact} : { contact:Contact }
         <div>
             <p>ID : {contact.id}</p>
             <p>Name : {contact.first_name}</p>
+            <p>Number:</p>
+            {contact.phones.map(p => (
+                <div>{p.number}</div>
+            ))}
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, {FC} from 'react'
 import ContactsGrid from "../../components/contactsGrid/contactsGrid.component";
+import {useGetContacts} from "../../hooks/contacts/useGetContacts";
 
 const ContactList:FC = ()=> {
     const sampleContacts = [
@@ -19,11 +20,13 @@ const ContactList:FC = ()=> {
         }
     ]
 
+    const contacts = useGetContacts()
+
     return(
         <>
             Contact List
 
-            <ContactsGrid contacts={sampleContacts}/>
+            <ContactsGrid contacts={contacts || []}/>
         </>
     )
 }

@@ -20,7 +20,7 @@ const ContactList:FC = ()=> {
         }
     ]
 
-    const contacts = useGetContacts()
+    const contacts = useGetContacts(1, [1570])
 
     return(
         <>

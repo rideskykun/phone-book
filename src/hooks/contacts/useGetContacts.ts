@@ -27,14 +27,14 @@ const GET_CONTACTS = gql`
     }
 `
 
-export const useGetContacts = ():Contact[] | undefined => {
+export const useGetContacts = (page: number, favourites: number[]):Contact[] | undefined => {
     const {data} = useQuery(GET_CONTACTS, {
         variables: {
             limit: 10,
-            offset: 0,
+            offset: 10 * (page-1),
             where: {
                 id: {
-                    _nin: [1570]
+                    _nin: favourites
                 }
             }
         }

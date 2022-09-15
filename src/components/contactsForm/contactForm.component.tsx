@@ -1,9 +1,12 @@
 import React, {FC, useState} from 'react'
+import {useAddContact} from "../../hooks/contacts/useAddContact";
 
 const ContactForm:FC = () => {
     const [fName, setFName] = useState('')
     const [lName, setLName] = useState('')
     const [phones, setPhones] = useState<string[]>([])
+
+    const addContact = useAddContact()
 
     const handleAddPhoneNumber = () => {
         setPhones([...phones, ''])
@@ -19,12 +22,14 @@ const ContactForm:FC = () => {
         setPhones(temp)
     }
     const handleSubmit = () => {
-        console.log({
-            first_name: fName,
-            last_name: lName,
-            phones: phones.map(p => {
-                return {number:p}
-            })
+        addContact({
+            variables: {
+                first_name: fName,
+                last_name: lName,
+                phones: phones.map(p => {
+                    return {number:p}
+                })
+            }
         })
     }
 

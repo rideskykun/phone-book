@@ -1,21 +1,21 @@
 import React, {FC, useEffect, useState} from 'react'
-import {useAddContact} from "../../hooks/contacts/useAddContact";
-import {useGetContactDetails} from "../../hooks/contacts/useGetContactDetails";
-import {useEditContact} from "../../hooks/contacts/useEditContact";
+import {useLazyQuery} from "@apollo/client";
 
-interface ContactFormProps {
-    id?: number
-}
+import {useAddContact} from "../../hooks/contacts/useAddContact";
+import {GET_CONTACTS} from "../../hooks/contacts/useGetContacts";
 
 const ContactForm:FC = () => {
     //States & Constants
     const [fName, setFName] = useState('')
     const [lName, setLName] = useState('')
+    const [tempFName, setTempFName] = useState('')
+    const [tempLName, setTempLName] = useState('')
     const [phones, setPhones] = useState<string[]>([])
+    const [nameVerified, setNameVerified] = useState<boolean>(false)
 
     //Hooks
     const addContact = useAddContact()
-    const editContact = useEditContact()
+    const [checkContactUnique, uniqueResults] = useLazyQuery(GET_CONTACTS)
 
     //Functions
     const handleAddPhoneNumber = () => {
@@ -30,6 +30,31 @@ const ContactForm:FC = () => {
         let temp = phones.slice();
         temp[index] = phone;
         setPhones(temp)
+    }
+
+    const handleVerifyNames = async() => {
+        let spChar = /[!@#$%^&*(),.?":{}|<>]/g
+        let isUnique = false
+        await checkContactUnique({
+            variables: {
+                where: {
+                    first_name: {_like: tempFName},
+                    _and: {
+                        last_name: {_like: tempLName}
+                    }
+                }
+            },
+            fetchPolicy: 'network-only',
+            onCompleted : (data => {isUnique = (data.contact.length<1)})
+        }).then(r=>null)
+
+        if(tempFName.match(spChar) || tempLName.match(spChar)) alert('You may not use Special Characters')
+        else if(!isUnique) alert('Duplicate Named Contact Found')
+        else {
+            setNameVerified(true)
+            setFName(tempFName)
+            setLName(tempLName)
+        }
     }
 
     const handleSubmit = () => {
@@ -49,34 +74,41 @@ const ContactForm:FC = () => {
             <h3>Add New Contact</h3>
             <label>
                 First Name
-                <input value={fName} onChange={(e)=>setFName(e.target.value)} type="text" placeholder={'First Name'}/>
+                <input value={tempFName} onChange={(e)=>setTempFName(e.target.value)} type="text" placeholder={'First Name'}/>
             </label>
             <br/>
             <label>
                 Last Name
-                <input value={lName} onChange={(e)=>setLName(e.target.value)} type="text" placeholder={'Last Name'}/>
+                <input value={tempLName} onChange={(e)=>setTempLName(e.target.value)} type="text" placeholder={'Last Name'}/>
             </label>
             <br/>
-            {
-                phones.length>0?
-                    phones.map((p, index) => (
-                        <>
-                            <label key={index}>
-                                Phone Number {index+1}
-                                <input value={p} onChange={e=>handleChangePhoneNumber(e.target.value, index)} type="text" placeholder={'081232132123'}/>
-                            </label>
-                            <button onClick={()=>handleRemovePhoneNumber(index)}>remove</button>
-                            <br/>
-                        </>
-                    ))
-                    :
-                    <p>No Phone Number Yet</p>
-            }
+            <button onClick={()=>handleVerifyNames()}>Verify Names</button>
             <br/>
-            <button onClick={()=>handleAddPhoneNumber()}>Add Phone Number</button>
-            <br/>
+            {nameVerified && tempFName === fName && tempLName === lName?
+                <>
+                    <label>
+                        Phone Numbers <br/>
+                        {
+                            phones.length>0?
+                                phones.map((p, index) => (
+                                    <>
+                                        <input value={p} onChange={e=>handleChangePhoneNumber(e.target.value, index)} type="text" placeholder={'081232132123'}/>
+                                        <button onClick={()=>handleRemovePhoneNumber(index)}>remove</button>
+                                        <br/>
+                                    </>
+                                ))
+                                :
+                                <p>No Phone Number Yet</p>
+                        }
+                    </label>
+                    <br/>
+                    <button onClick={()=>handleAddPhoneNumber()}>Add Phone Number</button>
+                    <br/>
 
-            <button onClick={()=>{handleSubmit()}}>submit</button>
+                    <button onClick={()=>{handleSubmit()}}>submit</button>
+                </>
+                :null
+            }
         </div>
     )
 }

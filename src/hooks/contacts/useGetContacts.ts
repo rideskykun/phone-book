@@ -1,7 +1,7 @@
-import {gql, useQuery} from "@apollo/client";
+import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import {Contact} from "../../common/interfaces/contact.interface";
 
-const GET_CONTACTS = gql`
+export const GET_CONTACTS = gql`
     query GetContactList (
         $distinct_on: [contact_select_column!],
         $limit: Int,
@@ -32,6 +32,7 @@ export const useGetContacts = (page: number, favourites: number[]):Contact[] | u
         variables: {
             limit: 10,
             offset: 10 * (page-1),
+            order_by:{first_name: 'asc'},
             where: {
                 id: {
                     _nin: favourites

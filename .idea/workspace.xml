@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="433ab86f-4d21-4610-a602-f91fdc228ed0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/contactsEdit/contactsEdit.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/contacts/useEditContact.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/contacts/useGetContactDetails.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contactsEdit/contactsEdit.component.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/contactsForm/contactForm.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contactsForm/contactForm.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/contacts/useEditContact.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/contacts/useGetContacts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/contacts/useGetContacts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/contactForm/contactAddEdit.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contactForm/contactAddEdit.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contactList/contactList.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contactList/contactList.page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -69,7 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1663226217850</updated>
       <workItem from="1663226239747" duration="4046000" />
-      <workItem from="1663239881967" duration="18347000" />
+      <workItem from="1663239881967" duration="28315000" />
     </task>
     <servers />
   </component>

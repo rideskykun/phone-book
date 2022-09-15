@@ -1,13 +1,23 @@
-import React, {FC, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {useAddContact} from "../../hooks/contacts/useAddContact";
+import {useGetContactDetails} from "../../hooks/contacts/useGetContactDetails";
+import {useEditContact} from "../../hooks/contacts/useEditContact";
+
+interface ContactFormProps {
+    id?: number
+}
 
 const ContactForm:FC = () => {
+    //States & Constants
     const [fName, setFName] = useState('')
     const [lName, setLName] = useState('')
     const [phones, setPhones] = useState<string[]>([])
 
+    //Hooks
     const addContact = useAddContact()
+    const editContact = useEditContact()
 
+    //Functions
     const handleAddPhoneNumber = () => {
         setPhones([...phones, ''])
     }
@@ -21,6 +31,7 @@ const ContactForm:FC = () => {
         temp[index] = phone;
         setPhones(temp)
     }
+
     const handleSubmit = () => {
         addContact({
             variables: {
@@ -35,6 +46,7 @@ const ContactForm:FC = () => {
 
     return(
         <div>
+            <h3>Add New Contact</h3>
             <label>
                 First Name
                 <input value={fName} onChange={(e)=>setFName(e.target.value)} type="text" placeholder={'First Name'}/>

@@ -2,6 +2,7 @@ import React, {FC} from 'react'
 import {useParams} from "react-router-dom";
 
 import ContactForm from "../../components/contactsForm/contactForm.component";
+import ContactsEdit from "../../components/contactsEdit/contactsEdit.component";
 
 
 const ContactAddEdit:FC = ()=> {
@@ -11,16 +12,13 @@ const ContactAddEdit:FC = ()=> {
     return(
         <>
             Contact Form
+            <br/>
 
-            <div>
-                {isAddNew?
-                    'Add New Contact'
-                    :
-                    `Edit Contact ID ${id}`
-                }
-            </div>
-
-            <ContactForm/>
+            {isAddNew?
+                <ContactForm/>
+                :
+                <ContactsEdit id={Number(id)}/>
+            }
         </>
     )
 }

@@ -7,7 +7,7 @@ const Header:FC = () => {
             <nav>
                 <ul>
                     <li>
-                        <NavLink to={'/'}>Home</NavLink>
+                        <NavLink to={'/list/page/1'}>Home</NavLink>
                     </li>
                     <li>
                         <NavLink to={'/add'}>New Contact</NavLink>

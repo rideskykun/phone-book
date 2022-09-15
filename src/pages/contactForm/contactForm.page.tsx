@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 
-const contactForm:FC = ()=> {
+const ContactForm:FC = ()=> {
     return(
         <>
             Contact Form
@@ -8,4 +8,4 @@ const contactForm:FC = ()=> {
     )
 }
 
-export default contactForm
+export default ContactForm

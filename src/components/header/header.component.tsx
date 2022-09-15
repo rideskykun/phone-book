@@ -1,16 +1,18 @@
 import React, {FC} from 'react'
-import {NavLink} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 const Header:FC = () => {
+    const navigate = useNavigate()
+
     return(
         <header>
             <nav>
                 <ul>
                     <li>
-                        <NavLink to={'/list/page/1'}>Home</NavLink>
+                        <button onClick={()=>navigate('/')}>Home</button>
                     </li>
                     <li>
-                        <NavLink to={'/add'}>New Contact</NavLink>
+                        <button onClick={()=>navigate('/add')}>New Contact</button>
                     </li>
                 </ul>
             </nav>

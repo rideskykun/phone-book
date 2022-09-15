@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="433ab86f-4d21-4610-a602-f91fdc228ed0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/contactsForm/contactForm.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app/app.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/app.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contactForm/contactForm.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contactForm/contactAddEdit.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contactsForm/contactForm.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contactsForm/contactForm.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contactForm/contactAddEdit.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contactForm/contactAddEdit.page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1663226217850</updated>
       <workItem from="1663226239747" duration="4046000" />
-      <workItem from="1663239881967" duration="7038000" />
+      <workItem from="1663239881967" duration="12604000" />
     </task>
     <servers />
   </component>

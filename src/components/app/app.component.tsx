@@ -11,6 +11,8 @@ import client from "../../common/apolloClient";
 
 import './app.component.css'
 
+
+
 const App: FC = () => {
 
     return(
@@ -22,8 +24,11 @@ const App: FC = () => {
                     <Header/>
 
                     <Routes>
-                        <Route path={'/'} element={<Navigate to={'/list/page/1'}/>}/>
-                        <Route path={'/list/page/:page'} element={<ContactList/>}/>
+                        <Route path={'/'} element={<Navigate to={'/list'}/>}/>
+                        <Route path={'list'}>
+                            <Route index element={<ContactList/>}/>
+                            <Route path={'page/:page'} element={<ContactList/>}/>
+                        </Route>
                         <Route path={'/add'} element={<ContactAddEdit/>}/>
                         <Route path={'/edit/:id'} element={<ContactAddEdit/>}/>
                     </Routes>

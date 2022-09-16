@@ -1,9 +1,10 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useContext, useEffect, useState} from 'react'
 import ContactsGrid from "../../components/contactsGrid/contactsGrid.component";
 import {useGetContacts} from "../../hooks/contacts/useGetContacts";
 import {useNavigate, useParams} from "react-router-dom";
 import styled from "@emotion/styled";
 import ContactsFavourites from "../../components/contactsFavourites/contactsFavourites.component";
+import FavouritesContext, {FavContextType} from "../../common/contexts/favouritesList.context";
 
 const ContactListWrapper = styled.div`
   overflow-y: scroll;
@@ -25,11 +26,13 @@ const PaginationButtons = styled.div`
 `
 
 const ContactList:FC = ()=> {
+    const {favourites} = useContext(FavouritesContext) as FavContextType
+
     const params = useParams()
     const navigate = useNavigate()
     const [page, setPage] = useState<number>(params.page? Number(params.page) : 1)
 
-    const contacts = useGetContacts(page, [1570])
+    const contacts = useGetContacts(page, favourites.map(f => f.id))
 
     useEffect(()=>{
         if(params.page) setPage(Number(params.page))
@@ -38,7 +41,7 @@ const ContactList:FC = ()=> {
     return(
         <ContactListWrapper>
             <h3>Favourites</h3>
-            <ContactsFavourites favourites={contacts?.slice(0, 4) || []}/>
+            <ContactsFavourites favourites={favourites || []}/>
 
             <h3>Contact List</h3>
 

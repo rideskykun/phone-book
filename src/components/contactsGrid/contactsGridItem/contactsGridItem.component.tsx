@@ -1,7 +1,8 @@
-import React, {FC} from 'react'
+import React, {FC, useContext} from 'react'
 import styled from "@emotion/styled";
 
 import {Contact} from "../../../common/interfaces/contact.interface";
+import FavouritesContext, {FavContextType} from "../../../common/contexts/favouritesList.context";
 
 const ContactCard = styled.div`
   width: 100%;
@@ -53,6 +54,8 @@ const FavButton = styled.button`
 `
 
 const ContactsGridItem:FC<{contact: Contact}> = ({contact} : { contact:Contact }) => {
+    const {addFavourite} = useContext(FavouritesContext) as FavContextType
+
     return(
         <ContactCard>
             {/*<p>ID : {contact.id}</p>*/}
@@ -63,7 +66,9 @@ const ContactsGridItem:FC<{contact: Contact}> = ({contact} : { contact:Contact }
                 ))}
             </ul>
             <div>
-                <FavButton>&#9733;</FavButton>
+                <FavButton
+                    onClick={()=>addFavourite(contact)}
+                >&#9733;</FavButton>
             </div>
         </ContactCard>
     )

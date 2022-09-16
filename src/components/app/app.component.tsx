@@ -9,6 +9,7 @@ import Header from '../header/header.component'
 import ContactList from "../../pages/contactList/contactList.page";
 import ContactAddEdit from "../../pages/contactForm/contactAddEdit.page";
 import Status from "../../pages/status/status.page";
+import {FavouritesProvider} from "../../common/contexts/favouritesList.context";
 
 const AppWrapper = styled.div`
   max-width: 70rem;
@@ -21,24 +22,25 @@ const App: FC = () => {
     return(
         <>
             <ApolloProvider client={client}>
-                <AppWrapper>
-                    {/*routing*/}
-                    <Router>
-                        <Header/>
-                        <Routes>
-                            {/*<Route path={'*'} element={<Navigate to={'/status/error'}/>}/>*/}
-                            <Route path={'/'} element={<Navigate to={'/list'}/>}/>
-                            <Route path={'list'}>
-                                <Route index element={<ContactList/>}/>
-                                <Route path={':page'} element={<ContactList/>}/>
-                            </Route>
-                            <Route path={'/add'} element={<ContactAddEdit/>}/>
-                            <Route path={'/edit/:id'} element={<ContactAddEdit/>}/>
-                            <Route path={'/status/:message'} element={<Status/>}/>
-                        </Routes>
-                    </Router>
-                </AppWrapper>
-
+                <FavouritesProvider>
+                    <AppWrapper>
+                        {/*routing*/}
+                        <Router>
+                            <Header/>
+                            <Routes>
+                                {/*<Route path={'*'} element={<Navigate to={'/status/error'}/>}/>*/}
+                                <Route path={'/'} element={<Navigate to={'/list'}/>}/>
+                                <Route path={'list'}>
+                                    <Route index element={<Navigate to={'/list/1'}/>}/>
+                                    <Route path={':page'} element={<ContactList/>}/>
+                                </Route>
+                                <Route path={'/add'} element={<ContactAddEdit/>}/>
+                                <Route path={'/edit/:id'} element={<ContactAddEdit/>}/>
+                                <Route path={'/status/:message'} element={<Status/>}/>
+                            </Routes>
+                        </Router>
+                    </AppWrapper>
+                </FavouritesProvider>
             </ApolloProvider>
 
             {/*global style*/}

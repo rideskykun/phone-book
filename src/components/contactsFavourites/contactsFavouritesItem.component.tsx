@@ -1,6 +1,7 @@
-import React, {FC} from "react";
+import React, {FC, useContext} from "react";
 import {Contact} from "../../common/interfaces/contact.interface";
 import styled from "@emotion/styled";
+import FavouritesContext, {FavContextType} from "../../common/contexts/favouritesList.context";
 
 const FavItem = styled.div`
   border: 1px solid gray;
@@ -40,6 +41,8 @@ const FavItem = styled.div`
 `
 
 const ContactsFavouritesItem:FC<{contact: Contact}> = ({contact} : { contact:Contact }) => {
+    const {removeFavourite} = useContext(FavouritesContext) as FavContextType
+
     return (
         <FavItem>
             <div>
@@ -48,7 +51,7 @@ const ContactsFavouritesItem:FC<{contact: Contact}> = ({contact} : { contact:Con
                 <h6>{contact.phones.length>1? `and ${contact.phones.length-1} more`:null}</h6>
             </div>
 
-            <button>Remove</button>
+            <button onClick={()=>removeFavourite(contact.id)}>Remove</button>
         </FavItem>
     )
 }

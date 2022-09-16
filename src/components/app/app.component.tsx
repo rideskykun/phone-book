@@ -28,7 +28,7 @@ const App: FC = () => {
                         <Router>
                             <Header/>
                             <Routes>
-                                {/*<Route path={'*'} element={<Navigate to={'/status/error'}/>}/>*/}
+                                <Route path={'*'} element={<Navigate to={'/status/error'}/>}/>
                                 <Route path={'/'} element={<Navigate to={'/list'}/>}/>
                                 <Route path={'list'}>
                                     <Route index element={<Navigate to={'/list/1'}/>}/>

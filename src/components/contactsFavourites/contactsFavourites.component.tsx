@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import ContactsFavouritesItem from "./contactsFavouritesItem.component";
+import ContactsFavouritesItem from "./contactsFavouritesItem/contactsFavouritesItem.component";
 import {Contact} from "../../common/interfaces/contact.interface";
 import styled from "@emotion/styled";
 

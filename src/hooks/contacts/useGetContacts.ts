@@ -1,4 +1,4 @@
-import {gql, useLazyQuery, useQuery} from "@apollo/client";
+import {gql, useQuery} from "@apollo/client";
 import {Contact} from "../../common/interfaces/contact.interface";
 
 export const GET_CONTACTS = gql`

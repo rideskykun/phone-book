@@ -1,7 +1,7 @@
 import React, {FC, useContext} from "react";
-import {Contact} from "../../common/interfaces/contact.interface";
+import {Contact} from "../../../common/interfaces/contact.interface";
 import styled from "@emotion/styled";
-import FavouritesContext, {FavContextType} from "../../common/contexts/favouritesList.context";
+import FavouritesContext, {FavContextType} from "../../../common/contexts/favouritesList.context";
 
 const FavItem = styled.div`
   border: 1px solid gray;

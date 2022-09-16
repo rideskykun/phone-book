@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useState} from 'react'
 import {useLazyQuery} from "@apollo/client";
 import {useNavigate} from "react-router-dom";
 
@@ -50,7 +50,7 @@ const ContactForm:FC = () => {
 
     //Hooks
     const addContact = useAddContact()
-    const [checkContactUnique, uniqueResults] = useLazyQuery(GET_CONTACTS)
+    const [checkContactUnique] = useLazyQuery(GET_CONTACTS)
 
     //Functions
     const handleAddPhoneNumber = () => {

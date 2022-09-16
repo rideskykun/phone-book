@@ -31,7 +31,7 @@ const Status:FC = () => {
         setTimeout(()=>{
             navigate('/')
         }, 2500)
-    },[])
+    },[navigate])
 
     return(
         <StatusWrapper>

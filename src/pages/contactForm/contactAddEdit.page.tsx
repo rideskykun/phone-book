@@ -10,7 +10,7 @@ const ContactAddEdit:FC = ()=> {
 
     return(
         <>
-            <h5>Contact Form</h5>
+            <h3>Add New Contact</h3>
 
             <ContactForm/>
         </>

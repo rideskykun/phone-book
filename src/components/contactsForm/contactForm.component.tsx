@@ -1,11 +1,13 @@
 import React, {FC, useEffect, useState} from 'react'
 import {useLazyQuery} from "@apollo/client";
+import {useNavigate} from "react-router-dom";
 
 import {useAddContact} from "../../hooks/contacts/useAddContact";
 import {GET_CONTACTS} from "../../hooks/contacts/useGetContacts";
 
 const ContactForm:FC = () => {
     //States & Constants
+    let navigate = useNavigate();
     const [fName, setFName] = useState('')
     const [lName, setLName] = useState('')
     const [tempFName, setTempFName] = useState('')
@@ -71,7 +73,6 @@ const ContactForm:FC = () => {
 
     return(
         <div>
-            <h3>Add New Contact</h3>
             <label>
                 First Name
                 <input value={tempFName} onChange={(e)=>setTempFName(e.target.value)} type="text" placeholder={'First Name'}/>

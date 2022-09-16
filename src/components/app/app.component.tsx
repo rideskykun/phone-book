@@ -35,7 +35,6 @@ const App: FC = () => {
                                     <Route path={':page'} element={<ContactList/>}/>
                                 </Route>
                                 <Route path={'/add'} element={<ContactAddEdit/>}/>
-                                <Route path={'/edit/:id'} element={<ContactAddEdit/>}/>
                                 <Route path={'/status/:message'} element={<Status/>}/>
                             </Routes>
                         </Router>

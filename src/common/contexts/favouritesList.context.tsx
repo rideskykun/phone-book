@@ -1,4 +1,4 @@
-import React, {createContext, FC, useEffect, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import {Contact} from "../interfaces/contact.interface";
 
 export type FavContextType = {

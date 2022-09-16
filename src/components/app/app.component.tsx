@@ -51,6 +51,11 @@ const App: FC = () => {
                 box-sizing: border-box;
               }
               
+              *::-webkit-scrollbar {display: none;}
+              *{
+              -ms-overflow-style: none;  /* IE and Edge */
+              }
+              
               h3{
                 text-align: center;
                 padding: 1rem 0 0.5rem 0;

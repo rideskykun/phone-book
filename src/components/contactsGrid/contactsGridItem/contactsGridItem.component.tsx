@@ -6,16 +6,16 @@ import {Contact} from "../../../common/interfaces/contact.interface";
 const ContactCard = styled.div`
   width: 100%;
   border: 1px solid #c9c9c9;
-  padding: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: center;
   border-radius: 0.25rem;
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 0.1);
+  overflow: hidden;
 
   div {
-    width: 20%;
+    width: 15%;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -23,20 +23,21 @@ const ContactCard = styled.div`
   }
 
   p {
-    width: 30%;
+    padding: 1rem;
+    width: 35%;
     white-space: normal;
   }
 
   ul {
+    padding: 1rem;
     width: 50%;
-    padding-left: 1rem;
   }
 `
 
 const FavButton = styled.button`
-  height: 2.3rem;
+  height: 2.5rem;
+  border-bottom-left-radius: 0.8rem;
   padding: 0 0.7rem;
-  border-radius: 0.25rem;
   background-color: #e8e8e8;
   color: gray;
   border: none;

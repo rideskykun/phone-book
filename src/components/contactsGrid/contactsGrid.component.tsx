@@ -13,9 +13,7 @@ const ContactsWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  height: 40rem;
-  overflow: auto;
-  box-shadow: inset 0 0 10px 1px rgb(0 0 0 / 0.10);
+  //box-shadow: inset 0 0 5px 1px rgb(0 0 0 / 0.10);
 
 `
 

@@ -69,6 +69,8 @@ const ContactForm:FC = () => {
                 })
             }
         })
+
+        navigate('/status/success')
     }
 
     return(

@@ -4,6 +4,39 @@ import {useNavigate} from "react-router-dom";
 
 import {useAddContact} from "../../hooks/contacts/useAddContact";
 import {GET_CONTACTS} from "../../hooks/contacts/useGetContacts";
+import styled from "@emotion/styled";
+
+const FormWrapper = styled.div`
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  input[type=text]{
+    width: 100%;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+  }
+  
+  button{
+    padding: 0.5rem 1rem;
+    :hover{
+      cursor: pointer;
+    }
+  }
+`
+
+const PhoneInputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+  input{
+    width: 85%;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+  }
+`
 
 const ContactForm:FC = () => {
     //States & Constants
@@ -50,7 +83,8 @@ const ContactForm:FC = () => {
             onCompleted : (data => {isUnique = (data.contact.length<1)})
         }).then(r=>null)
 
-        if(tempFName.match(spChar) || tempLName.match(spChar)) alert('You may not use Special Characters')
+        if(!tempFName || !tempLName) alert('Please fill in the fields')
+        else if(tempFName.match(spChar) || tempLName.match(spChar)) alert('You may not use Special Characters')
         else if(!isUnique) alert('Duplicate Named Contact Found')
         else {
             setNameVerified(true)
@@ -74,45 +108,38 @@ const ContactForm:FC = () => {
     }
 
     return(
-        <div>
-            <label>
-                First Name
-                <input value={tempFName} onChange={(e)=>setTempFName(e.target.value)} type="text" placeholder={'First Name'}/>
-            </label>
-            <br/>
-            <label>
-                Last Name
-                <input value={tempLName} onChange={(e)=>setTempLName(e.target.value)} type="text" placeholder={'Last Name'}/>
-            </label>
+        <FormWrapper>
+            <label> First Name</label>
+            <input value={tempFName} onChange={(e)=>setTempFName(e.target.value)} type="text" placeholder={'John'}/>
+
+            <label>Last Name</label>
+            <input value={tempLName} onChange={(e)=>setTempLName(e.target.value)} type="text" placeholder={'Doe'}/>
+
             <br/>
             <button onClick={()=>handleVerifyNames()}>Verify Names</button>
             <br/>
             {nameVerified && tempFName === fName && tempLName === lName?
                 <>
-                    <label>
-                        Phone Numbers <br/>
-                        {
-                            phones.length>0?
-                                phones.map((p, index) => (
-                                    <>
-                                        <input value={p} onChange={e=>handleChangePhoneNumber(e.target.value, index)} type="text" placeholder={'081232132123'}/>
-                                        <button onClick={()=>handleRemovePhoneNumber(index)}>remove</button>
-                                        <br/>
-                                    </>
-                                ))
-                                :
-                                <p>No Phone Number Yet</p>
-                        }
-                    </label>
-                    <br/>
+                    <label> Phone Numbers </label>
+                    {
+                        phones.length>0?
+                            phones.map((p, index) => (
+                                <PhoneInputWrapper key={index}>
+                                    <input value={p} onChange={e=>handleChangePhoneNumber(e.target.value, index)} type="phone" placeholder={'081232132123'}/>
+                                    <button onClick={()=>handleRemovePhoneNumber(index)}>X</button>
+                                </PhoneInputWrapper>
+                            ))
+                            :
+                            <input type={'text'} disabled value={'No Phone Numbers Yet'}/>
+                    }
                     <button onClick={()=>handleAddPhoneNumber()}>Add Phone Number</button>
                     <br/>
 
-                    <button onClick={()=>{handleSubmit()}}>submit</button>
+                    <button onClick={()=>{handleSubmit()}} disabled={phones.length<1}>Submit</button>
                 </>
                 :null
             }
-        </div>
+        </FormWrapper>
     )
 }
 
